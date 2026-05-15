@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tài liệu định hướng sản phẩm & nguồn thu - AI Experience Planner</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --paper: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --primary-soft: #e8f0ff;
+      --green: #059669;
+      --green-soft: #e7f8f1;
+      --orange: #ea580c;
+      --orange-soft: #fff3e8;
+      --purple: #7c3aed;
+      --purple-soft: #f2eafe;
+      --border: #e5e7eb;
+      --dark: #111827;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 18px 64px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #1d4ed8, #7c3aed);
+      color: white;
+      border-radius: 24px;
+      padding: 44px 36px;
+      box-shadow: 0 20px 50px rgba(31, 41, 55, 0.18);
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      margin: 0 0 16px;
+      font-size: 38px;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      max-width: 850px;
+      margin: 0;
+      font-size: 18px;
+      opacity: 0.94;
+    }
+
+    .meta {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .pill {
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.24);
+      color: white;
+      padding: 8px 13px;
+      border-radius: 999px;
+      font-size: 14px;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      margin: 22px 0;
+      box-shadow: 0 8px 30px rgba(31, 41, 55, 0.06);
+    }
+
+    h2 {
+      font-size: 28px;
+      margin: 0 0 16px;
+      color: var(--dark);
+      line-height: 1.25;
+    }
+
+    h3 {
+      font-size: 21px;
+      margin: 26px 0 10px;
+      color: var(--dark);
+    }
+
+    h4 {
+      font-size: 17px;
+      margin: 20px 0 8px;
+      color: var(--dark);
+    }
+
+    p {
+      margin: 10px 0;
+    }
+
+    ul, ol {
+      margin-top: 8px;
+      padding-left: 24px;
+    }
+
+    li {
+      margin: 7px 0;
+    }
+
+    .note {
+      border-left: 5px solid var(--primary);
+      background: var(--primary-soft);
+      padding: 16px 18px;
+      border-radius: 14px;
+      margin: 18px 0;
+    }
+
+    .warning {
+      border-left: 5px solid var(--orange);
+      background: var(--orange-soft);
+      padding: 16px 18px;
+      border-radius: 14px;
+      margin: 18px 0;
+    }
+
+    .success {
+      border-left: 5px solid var(--green);
+      background: var(--green-soft);
+      padding: 16px 18px;
+      border-radius: 14px;
+      margin: 18px 0;
+    }
+
+    .idea {
+      border-left: 5px solid var(--purple);
+      background: var(--purple-soft);
+      padding: 16px 18px;
+      border-radius: 14px;
+      margin: 18px 0;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .mini-card {
+      border: 1px solid var(--border);
+      background: #fff;
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .mini-card h4 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      background: white;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    th, td {
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      padding: 13px 14px;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f3f4f6;
+      color: #111827;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    .step {
+      background: #f9fafb;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .arrow {
+      color: var(--muted);
+      padding: 10px 0;
+    }
+
+    .example {
+      background: #111827;
+      color: #f9fafb;
+      border-radius: 16px;
+      padding: 18px;
+      margin: 18px 0;
+      overflow-x: auto;
+    }
+
+    .example strong {
+      color: #93c5fd;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .toc a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .toc a:hover {
+      text-decoration: underline;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      margin-top: 36px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 760px) {
+      .hero {
+        padding: 32px 22px;
+      }
+
+      .hero h1 {
+        font-size: 28px;
+      }
+
+      .grid-2, .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      table {
+        font-size: 14px;
+      }
+
+      th, td {
+        padding: 10px;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .page {
+        max-width: none;
+        padding: 0;
+      }
+
+      .card, .hero {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+
+      .hero {
+        color: white;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>Tài liệu định hướng sản phẩm & nguồn thu</h1>
+      <p>
+        Dành cho team Kinh tế và Truyền thông để hiểu rõ hệ thống gợi ý plan đi chơi,
+        từ đó phát triển thêm ý tưởng kiếm tiền, hợp tác đối tác và truyền thông sản phẩm.
+      </p>
+      <div class="meta">
+        <span class="pill">Sản phẩm: AI Experience Planner</span>
+        <span class="pill">Thị trường đầu tiên: TP.HCM</span>
+        <span class="pill">Đối tượng: giới trẻ, nhóm bạn, cặp đôi</span>
+        <span class="pill">Mục tiêu: từ ý định đi chơi → hành động thật</span>
+      </div>
+    </section>
+
+    <section class="card toc">
+      <h2>Mục lục</h2>
+      <ol>
+        <li><a href="#overview">Tóm tắt dễ hiểu</a></li>
+        <li><a href="#problem">Vấn đề thị trường đang gặp</a></li>
+        <li><a href="#solution">Sản phẩm của mình giải quyết gì?</a></li>
+        <li><a href="#positioning">Định vị sản phẩm</a></li>
+        <li><a href="#user-flow">Luồng người dùng thực tế</a></li>
+        <li><a href="#value">Giá trị cho từng bên</a></li>
+        <li><a href="#revenue">Các nguồn thu có thể triển khai</a></li>
+        <li><a href="#marketing">Ý tưởng truyền thông</a></li>
+        <li><a href="#business-team">Việc team Kinh tế có thể làm</a></li>
+        <li><a href="#media-team">Việc team Truyền thông có thể làm</a></li>
+        <li><a href="#roadmap">Lộ trình triển khai thực tế</a></li>
+        <li><a href="#conclusion">Kết luận</a></li>
+      </ol>
+    </section>
+
+    <section id="overview" class="card">
+      <h2>1. Tóm tắt dễ hiểu</h2>
+      <p>
+        Hệ thống đang được xây dựng là một nền tảng giúp người dùng lên kế hoạch đi chơi.
+        Người dùng chỉ cần nhập nhu cầu bằng ngôn ngữ tự nhiên, ví dụ:
+      </p>
+
+      <div class="example">
+        <p><strong>Ví dụ người dùng nhập:</strong></p>
+        <p>“Cuối tuần này mình muốn đi chơi với người yêu ở Quận 1, ngân sách khoảng 700k, muốn nhẹ nhàng, không quá đông.”</p>
+      </div>
+
+      <p>
+        Thay vì chỉ trả về một danh sách quán ăn hoặc địa điểm rời rạc, hệ thống sẽ tạo một lịch trình hoàn chỉnh:
+      </p>
+
+      <ul>
+        <li>Đi cafe ở đâu trước?</li>
+        <li>Sau đó nên đi hoạt động gì?</li>
+        <li>Ăn tối ở đâu hợp ngân sách?</li>
+        <li>Các địa điểm có gần nhau không?</li>
+        <li>Thời gian di chuyển có hợp lý không?</li>
+        <li>Có thể đặt vé, đặt bàn hoặc mua combo không?</li>
+      </ul>
+
+      <div class="note">
+        <strong>Cách hiểu đơn giản:</strong>
+        sản phẩm không chỉ giúp người dùng “tìm chỗ đi chơi”, mà giúp họ “chốt được một buổi đi chơi thật sự”.
+      </div>
+    </section>
+
+    <section id="problem" class="card">
+      <h2>2. Vấn đề thị trường đang gặp</h2>
+
+      <p>
+        Người trẻ hiện nay có rất nhiều nguồn để tìm địa điểm đi chơi như TikTok, Facebook, Google Maps,
+        Instagram, hội nhóm review, bạn bè giới thiệu. Tuy nhiên càng nhiều lựa chọn thì người dùng càng dễ bị rối.
+      </p>
+
+      <h3>2.1. Những khó khăn phổ biến</h3>
+
+      <div class="grid grid-2">
+        <div class="mini-card">
+          <h4>1. Không biết đi đâu</h4>
+          <p>
+            Người dùng có nhu cầu đi chơi nhưng không biết địa điểm nào phù hợp với hoàn cảnh:
+            hẹn hò, sinh nhật, đi nhóm, đi chill, đi ít tiền, đi sau giờ học hoặc sau giờ làm.
+          </p>
+        </div>
+
+        <div class="mini-card">
+          <h4>2. Có quá nhiều lựa chọn</h4>
+          <p>
+            TikTok và các nền tảng review tạo ra rất nhiều gợi ý, nhưng người dùng phải tự lọc lại:
+            chỗ nào thật sự phù hợp, chỗ nào gần, chỗ nào còn mở cửa, chỗ nào không bị quá đông.
+          </p>
+        </div>
+
+        <div class="mini-card">
+          <h4>3. Nhóm bạn khó thống nhất</h4>
+          <p>
+            Một người thích cafe, một người thích ăn uống, một người muốn hoạt động vui hơn.
+            Việc chốt plan mất nhiều thời gian và dễ gây nản.
+          </p>
+        </div>
+
+        <div class="mini-card">
+          <h4>4. Dễ bị vỡ plan</h4>
+          <p>
+            Đến nơi thì quá đông, trời mưa, địa điểm đóng cửa, giá không như kỳ vọng hoặc di chuyển quá xa.
+            Khi đó người dùng phải tự tìm phương án thay thế.
+          </p>
+        </div>
+      </div>
+
+      <h3>2.2. Các nền tảng hiện tại giải quyết chưa trọn vẹn</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Nền tảng</th>
+            <th>Giúp được gì?</th>
+            <th>Điểm còn thiếu</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Google Maps</td>
+            <td>Tìm địa điểm, xem đường đi, xem đánh giá</td>
+            <td>Không tự ghép thành một buổi đi chơi hợp mood</td>
+          </tr>
+          <tr>
+            <td>TikTok / Instagram</td>
+            <td>Khám phá địa điểm mới, xem video review</td>
+            <td>Nhiều nội dung mang tính giải trí, khó biết có phù hợp thật không</td>
+          </tr>
+          <tr>
+            <td>Foody / ShopeeFood</td>
+            <td>Tìm món ăn, đặt đồ ăn</td>
+            <td>Tập trung vào ăn uống, chưa giải quyết trải nghiệm đi chơi trọn buổi</td>
+          </tr>
+          <tr>
+            <td>ChatGPT / Gemini</td>
+            <td>Có thể gợi ý plan bằng AI</td>
+            <td>Không có dữ liệu địa phương riêng, không có booking, không có hệ sinh thái đối tác</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="success">
+        <strong>Cơ hội của sản phẩm:</strong>
+        tạo ra một hệ thống chuyên biệt cho việc lên kế hoạch đi chơi, hiểu bối cảnh địa phương,
+        biết gợi ý theo hoàn cảnh và có thể dẫn người dùng tới hành động đặt chỗ, đặt vé hoặc mua combo.
+      </div>
+    </section>
+
+    <section id="solution" class="card">
+      <h2>3. Sản phẩm của mình giải quyết gì?</h2>
+
+      <p>
+        Sản phẩm nên được hiểu là một “trợ lý lên kế hoạch trải nghiệm”, không chỉ là app gợi ý quán.
+        Điểm quan trọng là hệ thống giúp người dùng đi từ ý định mơ hồ đến một plan rõ ràng, có thể thực hiện ngay.
+      </p>
+
+      <h3>3.1. Trước khi dùng hệ thống</h3>
+      <ul>
+        <li>Người dùng phải tự hỏi bạn bè.</li>
+        <li>Tự lướt TikTok để tìm địa điểm.</li>
+        <li>Tự kiểm tra khoảng cách.</li>
+        <li>Tự tính ngân sách.</li>
+        <li>Tự chọn thứ tự đi.</li>
+        <li>Tự xử lý khi plan bị thay đổi.</li>
+      </ul>
+
+      <h3>3.2. Sau khi dùng hệ thống</h3>
+      <ul>
+        <li>Người dùng nhập nhu cầu một lần.</li>
+        <li>Hệ thống hiểu mục đích chuyến đi.</li>
+        <li>Hệ thống đề xuất lịch trình theo mood, ngân sách, thời gian và vị trí.</li>
+        <li>Người dùng có thể chỉnh sửa plan.</li>
+        <li>Người dùng có thể chia sẻ cho bạn bè.</li>
+        <li>Người dùng có thể đặt vé, đặt bàn hoặc xem ưu đãi nếu có.</li>
+      </ul>
+
+      <div class="flow">
+        <span class="step">Người dùng có ý định đi chơi</span>
+        <span class="arrow">→</span>
+        <span class="step">Nhập nhu cầu</span>
+        <span class="arrow">→</span>
+        <span class="step">AI hiểu bối cảnh</span>
+        <span class="arrow">→</span>
+        <span class="step">Tạo plan</span>
+        <span class="arrow">→</span>
+        <span class="step">Chỉnh sửa / chia sẻ</span>
+        <span class="arrow">→</span>
+        <span class="step">Booking / mua vé</span>
+      </div>
+
+      <div class="note">
+        <strong>Ý chính:</strong>
+        sản phẩm càng gần bước “user ra quyết định chi tiền” thì khả năng tạo doanh thu càng cao.
+      </div>
+    </section>
+
+    <section id="positioning" class="card">
+      <h2>4. Định vị sản phẩm</h2>
+
+      <p>
+        Để team Kinh tế và Truyền thông dễ triển khai, sản phẩm cần có định vị rõ ràng.
+        Không nên định vị quá chung là “app gợi ý địa điểm”, vì cách nói này dễ bị so sánh với Google Maps hoặc TikTok.
+      </p>
+
+      <h3>4.1. Định vị đề xuất</h3>
+
+      <div class="idea">
+        <strong>AI Experience Planner:</strong>
+        nền tảng giúp người trẻ lên kế hoạch đi chơi cá nhân hóa, từ gợi ý địa điểm,
+        sắp xếp lịch trình, chia sẻ với bạn bè đến đặt vé, đặt chỗ và nhận ưu đãi.
+      </div>
+
+      <h3>4.2. Sản phẩm không bán “plan”, sản phẩm bán “quyết định đi chơi”</h3>
+
+      <p>
+        Người dùng không thật sự cần một đoạn văn mô tả lịch trình.
+        Thứ họ cần là giảm bớt sự phân vân và có một lựa chọn đủ tốt để đi ngay.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Cách hiểu sai</th>
+            <th>Cách hiểu đúng</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>App tạo ra một lịch trình bằng AI</td>
+            <td>App giúp người dùng chốt nhanh một buổi đi chơi phù hợp</td>
+          </tr>
+          <tr>
+            <td>App cạnh tranh với Google Maps</td>
+            <td>App dùng dữ liệu địa điểm để tạo trải nghiệm hoàn chỉnh</td>
+          </tr>
+          <tr>
+            <td>App chỉ cần gợi ý nhiều địa điểm</td>
+            <td>App cần gợi ý đúng địa điểm, đúng hoàn cảnh, đúng thứ tự</td>
+          </tr>
+          <tr>
+            <td>Doanh thu đến từ việc user trả tiền dùng AI</td>
+            <td>Doanh thu đến từ booking, đối tác, quảng cáo, combo và ưu đãi</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="user-flow" class="card">
+      <h2>5. Luồng người dùng thực tế</h2>
+
+      <h3>5.1. Case 1: Hẹn hò cuối tuần</h3>
+
+      <div class="example">
+        <p><strong>User nhập:</strong></p>
+        <p>“Tối thứ 7 đi chơi với người yêu ở Quận 1, budget 800k, muốn lãng mạn nhưng không quá sang.”</p>
+      </div>
+
+      <p>Hệ thống có thể trả về:</p>
+      <ol>
+        <li>17:00 - Cafe nhẹ, không gian yên tĩnh, phù hợp nói chuyện.</li>
+        <li>18:30 - Workshop hoặc hoạt động ngắn để có trải nghiệm chung.</li>
+        <li>20:00 - Ăn tối ở nơi có mức giá vừa phải.</li>
+        <li>21:30 - Đi dạo hoặc rooftop nhẹ nếu còn thời gian.</li>
+      </ol>
+
+      <p>Các điểm có thể kiếm tiền:</p>
+      <ul>
+        <li>Hoa hồng từ workshop.</li>
+        <li>Hoa hồng từ đặt bàn nhà hàng.</li>
+        <li>Phí hiển thị ưu tiên cho rooftop/cafe đối tác.</li>
+        <li>Combo date night: cafe + workshop + ăn tối.</li>
+      </ul>
+
+      <h3>5.2. Case 2: Nhóm bạn chưa biết đi đâu</h3>
+
+      <div class="example">
+        <p><strong>User nhập:</strong></p>
+        <p>“Nhóm 5 người muốn đi chơi sau giờ học, budget rẻ, vui vui, ở gần Quận 10.”</p>
+      </div>
+
+      <p>Hệ thống có thể trả về:</p>
+      <ol>
+        <li>Ăn vặt hoặc món chính giá sinh viên.</li>
+        <li>Hoạt động nhóm như boardgame, bowling, karaoke, game center.</li>
+        <li>Quán nước gần đó để ngồi nói chuyện cuối buổi.</li>
+      </ol>
+
+      <p>Các điểm có thể kiếm tiền:</p>
+      <ul>
+        <li>Gói ưu đãi nhóm.</li>
+        <li>Đối tác boardgame/karaoke/game center.</li>
+        <li>Quảng cáo địa điểm mới mở.</li>
+        <li>Mã giảm giá theo nhóm từ 4 người trở lên.</li>
+      </ul>
+
+      <h3>5.3. Case 3: Sinh nhật bất ngờ</h3>
+
+      <div class="example">
+        <p><strong>User nhập:</strong></p>
+        <p>“Muốn tổ chức sinh nhật bất ngờ cho bạn, khoảng 6 người, cần chỗ chụp hình đẹp và có bánh.”</p>
+      </div>
+
+      <p>Hệ thống có thể trả về:</p>
+      <ol>
+        <li>Quán phù hợp tổ chức sinh nhật nhỏ.</li>
+        <li>Đề xuất tiệm bánh gần đó.</li>
+        <li>Gợi ý hoạt động sau sinh nhật.</li>
+        <li>Gợi ý phụ kiện hoặc dịch vụ trang trí nếu có đối tác.</li>
+      </ol>
+
+      <p>Các điểm có thể kiếm tiền:</p>
+      <ul>
+        <li>Hoa hồng từ đặt bàn.</li>
+        <li>Hoa hồng từ tiệm bánh.</li>
+        <li>Gói sinh nhật trọn gói.</li>
+        <li>Đối tác trang trí, chụp ảnh, quà tặng.</li>
+      </ul>
+    </section>
+
+    <section id="value" class="card">
+      <h2>6. Giá trị cho từng bên</h2>
+
+      <h3>6.1. Giá trị cho người dùng</h3>
+
+      <ul>
+        <li>Tiết kiệm thời gian tìm kiếm.</li>
+        <li>Không cần tự ghép lịch trình.</li>
+        <li>Có gợi ý đúng hoàn cảnh hơn.</li>
+        <li>Dễ chia sẻ cho bạn bè để cùng chốt.</li>
+        <li>Có thể nhận ưu đãi hoặc combo.</li>
+        <li>Giảm rủi ro chọn sai địa điểm.</li>
+      </ul>
+
+      <h3>6.2. Giá trị cho đối tác địa điểm</h3>
+
+      <ul>
+        <li>Có thêm khách hàng phù hợp với dịch vụ của họ.</li>
+        <li>Được xuất hiện trong các plan đúng ngữ cảnh.</li>
+        <li>Không chỉ quảng cáo đại trà, mà tiếp cận user đang có nhu cầu thật.</li>
+        <li>Có thể bán vé, combo, gói trải nghiệm.</li>
+        <li>Có dữ liệu phản hồi để cải thiện dịch vụ.</li>
+      </ul>
+
+      <h3>6.3. Giá trị cho hệ thống</h3>
+
+      <ul>
+        <li>Có thể tạo doanh thu từ nhiều nguồn.</li>
+        <li>Có dữ liệu hành vi để cá nhân hóa tốt hơn.</li>
+        <li>Có thể mở rộng sang nhiều loại trải nghiệm.</li>
+        <li>Có khả năng xây dựng hệ sinh thái địa điểm, hoạt động, event và booking.</li>
+      </ul>
+    </section>
+
+    <section id="revenue" class="card">
+      <h2>7. Các nguồn thu có thể triển khai</h2>
+
+      <p>
+        Đây là phần quan trọng nhất cho team Kinh tế. Hệ thống có thể không chỉ kiếm tiền bằng một cách,
+        mà có thể kết hợp nhiều nguồn thu tùy theo giai đoạn phát triển.
+      </p>
+
+      <h3>7.1. Nguồn thu 1: Hoa hồng booking</h3>
+
+      <p>
+        Khi người dùng đặt vé, đặt bàn hoặc đặt dịch vụ thông qua hệ thống,
+        hệ thống nhận một phần hoa hồng từ đối tác.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Loại booking</th>
+            <th>Ví dụ</th>
+            <th>Lý do phù hợp</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Vé hoạt động</td>
+            <td>Workshop, escape room, bowling, khu vui chơi</td>
+            <td>User thường cần đặt trước, dễ đo lường chuyển đổi</td>
+          </tr>
+          <tr>
+            <td>Đặt bàn</td>
+            <td>Nhà hàng, cafe, rooftop</td>
+            <td>Phù hợp với plan hẹn hò, sinh nhật, nhóm bạn</td>
+          </tr>
+          <tr>
+            <td>Vé event</td>
+            <td>Acoustic, triển lãm, mini concert, pop-up event</td>
+            <td>Có tính thời điểm, dễ truyền thông</td>
+          </tr>
+          <tr>
+            <td>Dịch vụ phụ trợ</td>
+            <td>Bánh sinh nhật, trang trí, chụp ảnh, thuê xe</td>
+            <td>Tạo thêm doanh thu quanh một dịp cụ thể</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="success">
+        <strong>Vì sao nguồn thu này hợp lý?</strong>
+        Người dùng không phải trả tiền trực tiếp cho app.
+        Họ chỉ trả cho dịch vụ họ vốn đã muốn sử dụng, còn hệ thống nhận hoa hồng từ đối tác.
+      </div>
+
+      <h4>Cách triển khai ban đầu</h4>
+      <ol>
+        <li>Chọn một nhóm dịch vụ dễ hợp tác trước, ví dụ workshop, boardgame, escape room hoặc event nhỏ.</li>
+        <li>Tạo nút “Đặt ngay”, “Xem ưu đãi”, “Giữ chỗ” trong plan.</li>
+        <li>Ban đầu có thể redirect qua form, fanpage, Zalo hoặc link đối tác.</li>
+        <li>Sau đó mới nâng cấp thành booking trực tiếp trong hệ thống.</li>
+      </ol>
+
+      <h3>7.2. Nguồn thu 2: Sponsored recommendation</h3>
+
+      <p>
+        Đối tác trả phí để được xuất hiện nổi bật hơn trong hệ thống.
+        Tuy nhiên cần làm cẩn thận để không làm giảm niềm tin của người dùng.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Hình thức</th>
+            <th>Mô tả</th>
+            <th>Lưu ý</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Địa điểm nổi bật</td>
+            <td>Hiển thị trong mục “Gợi ý nổi bật hôm nay”</td>
+            <td>Nên ghi rõ đây là địa điểm được tài trợ</td>
+          </tr>
+          <tr>
+            <td>Ưu tiên trong một nhóm ngữ cảnh</td>
+            <td>Ví dụ quán phù hợp date, sinh nhật, nhóm bạn</td>
+            <td>Chỉ nên hiển thị nếu thật sự phù hợp với nhu cầu user</td>
+          </tr>
+          <tr>
+            <td>Campaign theo mùa</td>
+            <td>Valentine, Trung thu, Noel, Tết, hè</td>
+            <td>Dễ kết hợp truyền thông</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="warning">
+        <strong>Không nên làm:</strong>
+        đẩy địa điểm tài trợ lên bất chấp nhu cầu người dùng.
+        Nếu user thấy gợi ý không còn đáng tin, sản phẩm sẽ mất giá trị cốt lõi.
+      </div>
+
+      <h3>7.3. Nguồn thu 3: Combo trải nghiệm</h3>
+
+      <p>
+        Hệ thống có thể đóng gói nhiều dịch vụ thành một combo theo từng hoàn cảnh.
+      </p>
+
+      <div class="grid grid-3">
+        <div class="mini-card">
+          <h4>Combo hẹn hò</h4>
+          <p>Cafe + workshop + ăn tối + ưu đãi chụp ảnh.</p>
+        </div>
+
+        <div class="mini-card">
+          <h4>Combo sinh nhật</h4>
+          <p>Đặt bàn + bánh + trang trí + hoạt động nhóm.</p>
+        </div>
+
+        <div class="mini-card">
+          <h4>Combo cuối tuần</h4>
+          <p>Ăn uống + hoạt động vui chơi + quán chill cuối buổi.</p>
+        </div>
+      </div>
+
+      <p>
+        Đây là hướng rất đáng chú ý vì hệ thống không chỉ giới thiệu từng địa điểm,
+        mà tạo ra một “gói trải nghiệm” có giá trị cao hơn.
+      </p>
+
+      <h3>7.4. Nguồn thu 4: Gói quảng bá cho đối tác</h3>
+
+      <p>
+        Đối tác như quán cafe, workshop, khu vui chơi, event organizer có thể trả phí theo gói.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Gói</th>
+            <th>Quyền lợi</th>
+            <th>Phù hợp với ai?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Basic</td>
+            <td>Xuất hiện trong database, có trang thông tin cơ bản</td>
+            <td>Địa điểm nhỏ, mới bắt đầu</td>
+          </tr>
+          <tr>
+            <td>Growth</td>
+            <td>Được gắn tag ngữ cảnh, xuất hiện trong các plan phù hợp</td>
+            <td>Quán hoặc hoạt động muốn tăng khách đều</td>
+          </tr>
+          <tr>
+            <td>Campaign</td>
+            <td>Được chạy chiến dịch theo mùa, có content truyền thông riêng</td>
+            <td>Event, workshop, khu vui chơi, brand lifestyle</td>
+          </tr>
+          <tr>
+            <td>Premium</td>
+            <td>Dashboard dữ liệu, ưu tiên hiển thị, combo riêng, booking tracking</td>
+            <td>Đối tác lớn hoặc chuỗi địa điểm</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>7.5. Nguồn thu 5: Affiliate link</h3>
+
+      <p>
+        Trong giai đoạn đầu, nếu chưa thể tích hợp booking trực tiếp,
+        hệ thống có thể dùng link affiliate hoặc link tracking.
+      </p>
+
+      <p>Ví dụ:</p>
+      <ul>
+        <li>Link mua vé sự kiện.</li>
+        <li>Link đặt vé khu vui chơi.</li>
+        <li>Link đặt bàn.</li>
+        <li>Link mua voucher.</li>
+      </ul>
+
+      <div class="note">
+        <strong>Ưu điểm:</strong>
+        triển khai nhanh hơn booking trực tiếp.
+        <br />
+        <strong>Nhược điểm:</strong>
+        khó kiểm soát trải nghiệm người dùng và dữ liệu chuyển đổi hơn.
+      </div>
+
+      <h3>7.6. Nguồn thu 6: Premium cho người dùng</h3>
+
+      <p>
+        Đây nên là nguồn thu triển khai sau, khi sản phẩm đã có lượng người dùng ổn định.
+        Lý do là người dùng Việt Nam thường chưa sẵn sàng trả tiền ngay cho một app mới,
+        đặc biệt nếu họ chưa thấy giá trị rõ ràng.
+      </p>
+
+      <p>Các tính năng premium có thể gồm:</p>
+      <ul>
+        <li>AI nhớ sở thích cá nhân sâu hơn.</li>
+        <li>Lên plan nhiều ngày.</li>
+        <li>Plan riêng cho dịp đặc biệt.</li>
+        <li>Gợi ý hidden gems chất lượng cao.</li>
+        <li>Không quảng cáo.</li>
+        <li>Ưu đãi độc quyền từ đối tác.</li>
+      </ul>
+
+      <h3>7.7. Nguồn thu 7: Dữ liệu insight cho đối tác</h3>
+
+      <p>
+        Khi hệ thống có nhiều người dùng, dữ liệu hành vi có thể tạo giá trị cho đối tác.
+        Tuy nhiên cần xử lý cẩn thận về quyền riêng tư và chỉ nên cung cấp dữ liệu tổng hợp,
+        không bán dữ liệu cá nhân.
+      </p>
+
+      <p>Ví dụ insight có thể cung cấp:</p>
+      <ul>
+        <li>Người dùng thường tìm plan hẹn hò vào ngày nào?</li>
+        <li>Khu vực nào có nhu cầu đi workshop cao?</li>
+        <li>Nhóm tuổi nào thích hoạt động indoor?</li>
+        <li>Ngân sách trung bình cho một buổi đi chơi là bao nhiêu?</li>
+        <li>Loại địa điểm nào thường được thêm vào plan nhưng ít được booking?</li>
+      </ul>
+
+      <div class="warning">
+        <strong>Lưu ý quan trọng:</strong>
+        dữ liệu insight chỉ nên ở dạng tổng hợp, ẩn danh và phục vụ cải thiện sản phẩm/đối tác.
+        Không nên xây mô hình kinh doanh dựa trên việc bán dữ liệu cá nhân.
+      </div>
+    </section>
+
+    <section id="marketing" class="card">
+      <h2>8. Ý tưởng truyền thông</h2>
+
+      <p>
+        Với sản phẩm này, truyền thông nên đánh vào cảm giác rất đời thường:
+        “không biết đi đâu”, “lười lên plan”, “nhóm bạn mãi không chốt được kèo”.
+      </p>
+
+      <h3>8.1. Thông điệp truyền thông chính</h3>
+
+      <div class="grid grid-2">
+        <div class="mini-card">
+          <h4>Thông điệp 1</h4>
+          <p>Không biết đi đâu? Để AI lên plan.</p>
+        </div>
+
+        <div class="mini-card">
+          <h4>Thông điệp 2</h4>
+          <p>Từ một câu prompt → có ngay lịch trình đi chơi.</p>
+        </div>
+
+        <div class="mini-card">
+          <h4>Thông điệp 3</h4>
+          <p>Chốt kèo nhanh hơn, đi chơi vui hơn.</p>
+        </div>
+
+        <div class="mini-card">
+          <h4>Thông điệp 4</h4>
+          <p>App giúp bạn chọn đúng chỗ, đúng mood, đúng ngân sách.</p>
+        </div>
+      </div>
+
+      <h3>8.2. Các format nội dung có thể viral</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Format</th>
+            <th>Ví dụ nội dung</th>
+            <th>Mục tiêu</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Đi chơi theo AI</td>
+            <td>“Tụi mình để AI lên lịch hẹn hò ở Sài Gòn và cái kết...”</td>
+            <td>Tạo sự tò mò, chứng minh sản phẩm dùng được thật</td>
+          </tr>
+          <tr>
+            <td>Prompt challenge</td>
+            <td>“Comment tình huống của bạn, tụi mình để AI lên plan.”</td>
+            <td>Tăng tương tác</td>
+          </tr>
+          <tr>
+            <td>Before / After</td>
+            <td>Trước: không biết đi đâu. Sau: có plan 4 điểm trong 10 giây.</td>
+            <td>Làm rõ giá trị sản phẩm</td>
+          </tr>
+          <tr>
+            <td>Plan theo mood</td>
+            <td>Plan cho người hướng nội, plan cho first date, plan sinh nhật tiết kiệm</td>
+            <td>Đánh vào nhiều nhóm người dùng</td>
+          </tr>
+          <tr>
+            <td>Review plan thật</td>
+            <td>Đi thử plan do hệ thống tạo và chấm điểm</td>
+            <td>Tăng độ tin cậy</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>8.3. Các dịp truyền thông nên khai thác</h3>
+      <ul>
+        <li>Valentine.</li>
+        <li>8/3, 20/10.</li>
+        <li>Giáng sinh.</li>
+        <li>Năm mới.</li>
+        <li>Mùa hè.</li>
+        <li>Cuối tuần.</li>
+        <li>Mùa tựu trường.</li>
+        <li>Sinh nhật, kỷ niệm, first date.</li>
+      </ul>
+
+      <h3>8.4. User-generated content</h3>
+
+      <p>
+        Sản phẩm nên có khả năng chia sẻ plan ra ngoài dưới dạng đẹp, dễ đăng story hoặc gửi cho bạn bè.
+      </p>
+
+      <p>Ví dụ:</p>
+      <ul>
+        <li>Ảnh itinerary đẹp để đăng story.</li>
+        <li>Link plan để gửi trong group chat.</li>
+        <li>Template “AI đã lên kèo cho tụi mình”.</li>
+        <li>Vote plan trong nhóm bạn.</li>
+      </ul>
+
+      <div class="success">
+        <strong>Mục tiêu truyền thông:</strong>
+        biến mỗi plan được tạo ra thành một nội dung có thể chia sẻ,
+        từ đó giúp sản phẩm tự lan truyền.
+      </div>
+    </section>
+
+    <section id="business-team" class="card">
+      <h2>9. Việc team Kinh tế có thể làm</h2>
+
+      <p>
+        Team Kinh tế nên tập trung vào việc biến sản phẩm thành một hệ sinh thái có thể tạo doanh thu.
+        Không chỉ nghĩ “kiếm tiền bằng cách nào”, mà cần nghĩ “bên nào có lợi khi tham gia hệ thống”.
+      </p>
+
+      <h3>9.1. Xác định nhóm đối tác ưu tiên</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Nhóm đối tác</th>
+            <th>Lý do nên ưu tiên</th>
+            <th>Cách hợp tác ban đầu</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Workshop</td>
+            <td>Dễ đưa vào plan, có trải nghiệm rõ ràng, phù hợp hẹn hò/nhóm bạn</td>
+            <td>Hoa hồng theo booking hoặc gói hiển thị</td>
+          </tr>
+          <tr>
+            <td>Boardgame / Karaoke / Game center</td>
+            <td>Phù hợp nhóm bạn, nhu cầu đi sau giờ học/giờ làm</td>
+            <td>Combo nhóm, mã giảm giá</td>
+          </tr>
+          <tr>
+            <td>Cafe / Rooftop</td>
+            <td>Phù hợp nhiều loại plan</td>
+            <td>Gói quảng bá, ưu đãi theo khung giờ</td>
+          </tr>
+          <tr>
+            <td>Event organizer</td>
+            <td>Cần bán vé, dễ tạo campaign truyền thông</td>
+            <td>Affiliate vé, bài giới thiệu, campaign theo dịp</td>
+          </tr>
+          <tr>
+            <td>Nhà hàng</td>
+            <td>Phù hợp date, sinh nhật, nhóm</td>
+            <td>Đặt bàn, combo, ưu đãi theo nhóm</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>9.2. Chuẩn bị proposal cho đối tác</h3>
+
+      <p>Khi đi làm việc với đối tác, cần trả lời được 4 câu hỏi:</p>
+
+      <ol>
+        <li>Hệ thống giúp đối tác có thêm khách như thế nào?</li>
+        <li>Khách đến từ hệ thống có đúng nhu cầu không?</li>
+        <li>Đối tác phải trả tiền theo hình thức nào?</li>
+        <li>Làm sao đo được hiệu quả?</li>
+      </ol>
+
+      <h3>9.3. Các chỉ số team Kinh tế cần theo dõi</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Chỉ số</th>
+            <th>Ý nghĩa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Số plan được tạo</td>
+            <td>Đo mức độ người dùng quan tâm</td>
+          </tr>
+          <tr>
+            <td>Số lượt click vào địa điểm</td>
+            <td>Đo độ hấp dẫn của gợi ý</td>
+          </tr>
+          <tr>
+            <td>Số lượt bấm booking / ưu đãi</td>
+            <td>Đo khả năng tạo doanh thu</td>
+          </tr>
+          <tr>
+            <td>Tỷ lệ chuyển đổi booking</td>
+            <td>Đo chất lượng luồng kiếm tiền</td>
+          </tr>
+          <tr>
+            <td>Doanh thu trên mỗi plan</td>
+            <td>Đánh giá giá trị kinh tế của mỗi lần dùng sản phẩm</td>
+          </tr>
+          <tr>
+            <td>Đối tác hoạt động hiệu quả nhất</td>
+            <td>Biết nên mở rộng nhóm đối tác nào</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>9.4. Câu hỏi nghiên cứu thêm cho team Kinh tế</h3>
+      <ul>
+        <li>Nhóm đối tác nào sẵn sàng trả tiền sớm nhất?</li>
+        <li>Người dùng có thích mua combo hay thích tự chọn từng điểm?</li>
+        <li>Hoa hồng bao nhiêu là hợp lý cho từng loại dịch vụ?</li>
+        <li>Nên ưu tiên booking trực tiếp hay redirect qua đối tác?</li>
+        <li>Địa điểm cần thấy chỉ số gì để tin rằng hệ thống có hiệu quả?</li>
+      </ul>
+    </section>
+
+    <section id="media-team" class="card">
+      <h2>10. Việc team Truyền thông có thể làm</h2>
+
+      <p>
+        Team Truyền thông cần giúp người dùng hiểu sản phẩm nhanh nhất có thể.
+        Vì đây là sản phẩm mới, nếu giải thích quá kỹ thuật thì người dùng sẽ khó hiểu.
+      </p>
+
+      <h3>10.1. Không nên truyền thông theo hướng kỹ thuật</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Không nên nói</th>
+            <th>Nên nói</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Hệ thống dùng AI, LLM, recommendation engine</td>
+            <td>Chỉ cần nhập nhu cầu, app lên plan đi chơi cho bạn</td>
+          </tr>
+          <tr>
+            <td>Có thuật toán tối ưu lịch trình</td>
+            <td>App sắp xếp địa điểm gần nhau, đỡ mất công tìm đường</td>
+          </tr>
+          <tr>
+            <td>Có cá nhân hóa dựa trên hành vi</td>
+            <td>Dùng càng nhiều, app càng hiểu gu đi chơi của bạn</td>
+          </tr>
+          <tr>
+            <td>Có hệ thống booking monetization</td>
+            <td>Có thể đặt vé, đặt bàn, nhận ưu đãi ngay trong plan</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>10.2. Các nhóm nội dung nên triển khai</h3>
+
+      <div class="grid grid-2">
+        <div class="mini-card">
+          <h4>Nội dung giáo dục thị trường</h4>
+          <p>Giải thích app dùng để làm gì, dùng trong trường hợp nào, khác gì Google Maps.</p>
+        </div>
+
+        <div class="mini-card">
+          <h4>Nội dung trải nghiệm thật</h4>
+          <p>Quay lại quá trình nhập prompt, nhận plan và đi thử ngoài đời.</p>
+        </div>
+
+        <div class="mini-card">
+          <h4>Nội dung theo tình huống</h4>
+          <p>Plan cho hẹn hò lần đầu, sinh nhật, đi nhóm, đi sau giờ học, đi ít tiền.</p>
+        </div>
+
+        <div class="mini-card">
+          <h4>Nội dung cộng đồng</h4>
+          <p>Cho người dùng comment tình huống, sau đó hệ thống tạo plan mẫu.</p>
+        </div>
+      </div>
+
+      <h3>10.3. Kịch bản video mẫu</h3>
+
+      <div class="example">
+        <p><strong>Title:</strong> Tụi mình để AI lên lịch hẹn hò ở Sài Gòn</p>
+        <p><strong>Hook:</strong> “Không biết tối nay đi đâu? Thử để AI chọn giùm.”</p>
+        <p><strong>Diễn biến:</strong></p>
+        <ol>
+          <li>Nhập prompt: “Đi date nhẹ nhàng ở Quận 1, budget 700k.”</li>
+          <li>App trả về plan 3-4 điểm.</li>
+          <li>Đi thử từng điểm.</li>
+          <li>Chấm điểm: đúng mood không, có tiện không, có đáng tiền không.</li>
+        </ol>
+        <p><strong>CTA:</strong> “Comment tình huống của bạn, tụi mình thử để AI lên plan tiếp.”</p>
+      </div>
+    </section>
+
+    <section id="roadmap" class="card">
+      <h2>11. Lộ trình triển khai thực tế</h2>
+
+      <p>
+        Để sản phẩm thực tế và có khả năng kiếm tiền, không nên làm tất cả cùng lúc.
+        Nên triển khai theo từng giai đoạn để kiểm chứng nhu cầu, sau đó mới mở rộng.
+      </p>
+
+      <h3>Giai đoạn 1: Chứng minh người dùng cần sản phẩm</h3>
+      <ul>
+        <li>Cho phép người dùng nhập nhu cầu và nhận plan.</li>
+        <li>Có dữ liệu địa điểm cơ bản.</li>
+        <li>Có tag như: date, group, chill, cheap, indoor, outdoor, aesthetic, birthday.</li>
+        <li>Có chức năng lưu và chia sẻ plan.</li>
+        <li>Đo xem người dùng có thích plan không.</li>
+      </ul>
+
+      <h3>Giai đoạn 2: Thử nghiệm nguồn thu nhẹ</h3>
+      <ul>
+        <li>Gắn link đặt vé hoặc liên hệ đối tác.</li>
+        <li>Thử mã giảm giá với một số địa điểm.</li>
+        <li>Thử sponsored recommendation nhưng phải minh bạch.</li>
+        <li>Đo click, booking, conversion.</li>
+      </ul>
+
+      <h3>Giai đoạn 3: Xây hệ sinh thái đối tác</h3>
+      <ul>
+        <li>Ký hợp tác với workshop, event, cafe, rooftop, hoạt động nhóm.</li>
+        <li>Tạo dashboard đơn giản cho đối tác.</li>
+        <li>Tạo combo trải nghiệm.</li>
+        <li>Đẩy mạnh campaign theo mùa.</li>
+      </ul>
+
+      <h3>Giai đoạn 4: Cá nhân hóa và mở rộng</h3>
+      <ul>
+        <li>Học gu người dùng qua lịch sử tương tác.</li>
+        <li>Gợi ý plan theo thói quen.</li>
+        <li>Mở rộng sang khu vực khác.</li>
+        <li>Phát triển premium features nếu có đủ người dùng trung thành.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>12. Các rủi ro cần lưu ý</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Rủi ro</th>
+            <th>Tác động</th>
+            <th>Cách giảm rủi ro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Gợi ý không đúng thực tế</td>
+            <td>User mất niềm tin</td>
+            <td>Cần review thật, dữ liệu cập nhật, feedback sau chuyến đi</td>
+          </tr>
+          <tr>
+            <td>Quá phụ thuộc vào AI</td>
+            <td>Plan nghe hay nhưng khó đi thật</td>
+            <td>Kết hợp rule thực tế: giờ mở cửa, khoảng cách, ngân sách, thời lượng</td>
+          </tr>
+          <tr>
+            <td>Sponsored quá lộ</td>
+            <td>User nghĩ app chỉ quảng cáo</td>
+            <td>Minh bạch nhãn tài trợ, chỉ gợi ý khi phù hợp</td>
+          </tr>
+          <tr>
+            <td>Đối tác không thấy hiệu quả</td>
+            <td>Khó bán gói hợp tác</td>
+            <td>Cần tracking: click, booking, conversion, feedback</td>
+          </tr>
+          <tr>
+            <td>Dữ liệu địa điểm nghèo</td>
+            <td>Plan bị lặp và thiếu hấp dẫn</td>
+            <td>Bổ sung tag trải nghiệm, hình ảnh, review, phân loại mood</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="conclusion" class="card">
+      <h2>13. Kết luận</h2>
+
+      <p>
+        Hệ thống này không nên được nhìn nhận là một app gợi ý địa điểm đơn giản.
+        Nếu phát triển đúng hướng, đây có thể trở thành một nền tảng hỗ trợ người dùng
+        ra quyết định và triển khai các buổi đi chơi ngoài đời thật.
+      </p>
+
+      <div class="success">
+        <strong>Định hướng cốt lõi:</strong>
+        từ một nhu cầu mơ hồ của người dùng, hệ thống tạo ra một plan rõ ràng,
+        hợp mood, hợp ngân sách, hợp vị trí và có thể dẫn tới booking hoặc ưu đãi.
+      </div>
+
+      <p>
+        Với team Kinh tế, trọng tâm là tìm nguồn thu từ booking, đối tác, combo, sponsored recommendation và affiliate.
+        Với team Truyền thông, trọng tâm là giúp người dùng hiểu sản phẩm thật nhanh qua các tình huống đời thường:
+        không biết đi đâu, lười lên plan, nhóm bạn khó chốt kèo, cần một buổi hẹn hợp mood.
+      </p>
+
+      <p>
+        Nếu làm tốt, sản phẩm có thể phát triển thành một hệ sinh thái trải nghiệm,
+        nơi người dùng không chỉ tìm địa điểm mà còn chốt được kế hoạch,
+        còn đối tác có thêm khách hàng đúng nhu cầu.
+      </p>
+    </section>
+
+    <p class="footer">
+      Tài liệu nội bộ định hướng sản phẩm, truyền thông và mô hình nguồn thu cho AI Experience Planner.
+    </p>
+  </main>
+</body>
+</html>
